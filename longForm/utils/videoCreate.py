@@ -42,10 +42,20 @@ def createVideo(username):
 
     backgroundClip = ColorClip((720,1280), (0,0,255), duration=videoAudio.duration)
     bg_file = os.listdir("bg_vids")[random.randrange(0,len(os.listdir("bg_vids")))]
-    backgroundClip = VideoFileClip("bg_vids/"+bg_file)
-    videoStart = int(backgroundClip.duration-videoAudio.duration)
-    videoStart = random.randrange(0,videoStart)
-    backgroundClip = backgroundClip.subclip(videoStart, videoStart + videoAudio.duration)
+    backgroundClip = VideoFileClip("bg_vids/" + bg_file)
+    videoAudioDuration = videoAudio.duration
+    backgroundClipDuration = backgroundClip.duration
+
+    if videoAudioDuration > backgroundClipDuration:
+        # Loop the background video
+        loops_required = int(videoAudioDuration // backgroundClipDuration) + 1
+        backgroundClip = concatenate_videoclips([backgroundClip] * loops_required)
+
+    # Now, calculate the start time for the video
+    videoStart = random.randrange(0, int(backgroundClip.duration - videoAudioDuration))
+
+    backgroundClip = backgroundClip.subclip(videoStart, videoStart + videoAudioDuration)
+
     print(bg_file)
     #(w, h) = videoImages.size
 

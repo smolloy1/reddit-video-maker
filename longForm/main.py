@@ -1,4 +1,4 @@
-from types import NoneType
+
 from utils.redditScrape import scrapeComments
 from utils.audioGenerator import soundifyAuthor, soundifyComment
 from utils.captionCreate import commentImage, titleImage

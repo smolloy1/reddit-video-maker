@@ -1,4 +1,3 @@
-from types import NoneType
 from utils.redditScrape import scrapeComments
 from utils.audioGenerator import soundifyAuthor, soundifyComment
 from utils.captionCreate import commentImage, titleImage
@@ -9,14 +8,14 @@ import time
 
 # Gets posts and top 5 comments from selected subreddit
 ### subreddit, number of posts, timeframe
-
+subreddit = "tifu"
 
 for i in range(1):
     #for file in os.listdir("temp"):
     #    os.remove("temp/"+file)
     
     postnum = i + 1
-    post = scrapeComments("askreddit", postnum, "week")
+    post = scrapeComments(subreddit, postnum, "week")
     print(post[0].author)
     asker = str(post[0].author)
     os.makedirs(asker)

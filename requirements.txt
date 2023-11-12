@@ -1,0 +1,4 @@
+moviepy
+praw
+Pillow  # This is the PIL package, which is now distributed as Pillow
+pyttsx3
